@@ -6,19 +6,22 @@ import styles from "./MainPage.module.css"
 export const MainPage = () => {
   const [limitOfPosts, setLimitOfPosts] = useState(20)
 
-  const { data, isError, isLoading, isSuccess } = useGetPostListQuery({
-    limit: limitOfPosts,
-  })
+  const { data, isError, isLoading, isSuccess, isFetching } =
+    useGetPostListQuery({
+      limit: limitOfPosts,
+    })
 
   const { ref: lastCard, inView: inViewLastCard } = useInView({
-    threshold: 0.5,
+    threshold: 0.1,
+    trackVisibility: true,
+    delay: 500,
   })
 
   useEffect(() => {
-    if (inViewLastCard) {
+    if (inViewLastCard && !isFetching && limitOfPosts < 100) {
       setLimitOfPosts(prev => prev + 10)
     }
-  }, [inViewLastCard])
+  }, [inViewLastCard, isFetching])
 
   if (isError) {
     return (
@@ -53,6 +56,7 @@ export const MainPage = () => {
             ),
           )}
         </ul>
+        {isFetching && <div>ЗАГРУЗКА</div>}
       </div>
     )
   }
