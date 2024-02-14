@@ -1,0 +1,21 @@
+.link {
+  padding: 5px 10px;
+  line-height: 1rem;
+  border: 1px solid #473ba07c;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+
+.link:hover,
+.link:hover:visited {
+  transition: all 0.3s ease;
+  color: blue;
+  box-shadow: 3px 2px 2px blue;
+  border: 1px solid blue;
+}
+
+.link:visited {
+  color: black;
+}

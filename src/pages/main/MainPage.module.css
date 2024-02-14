@@ -1,0 +1,7 @@
+.container {
+  text-align: center;
+  margin: 0 auto;
+  width: 1000px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
+}
