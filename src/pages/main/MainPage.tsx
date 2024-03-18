@@ -4,7 +4,7 @@ import { useGetPostListQuery, PostCard } from "../../features"
 import styles from "./MainPage.module.css"
 
 export const MainPage = () => {
-  const [limitOfPosts, setLimitOfPosts] = useState(20)
+  const [limitOfPosts, setLimitOfPosts] = useState<number>(20)
 
   const { data, isError, isLoading, isSuccess, isFetching } =
     useGetPostListQuery({
@@ -19,9 +19,9 @@ export const MainPage = () => {
 
   useEffect(() => {
     if (inViewLastCard && !isFetching && limitOfPosts < 100) {
-      setLimitOfPosts(prev => prev + 10)
+      setLimitOfPosts(limitOfPosts + 10)
     }
-  }, [inViewLastCard, isFetching])
+  }, [inViewLastCard])
 
   if (isError) {
     return (
